@@ -17,7 +17,8 @@ function loadRoute(geoJSON) {
         "opacity": 0.65
     };
 
-    L.geoJSON(geoJSON, {
+    // return the layer
+    return L.geoJSON(geoJSON, {
         style: lineStyle
     }).addTo(mymap);
 }
@@ -52,11 +53,21 @@ function parseCSV(csvData) {
     return coordinates;
 }
 
+function clearMap() {
+    mymap.removeLayer(layer);
+}
+
+function drawRoute(route) {
+    var coordinates = parseCSV(route); // One of the following; csv_biking, csv_driving, csv_running, csv_walking
+    var geoJSON = createGeoJSONObject(coordinates);
+    layer = loadRoute(geoJSON);
+}
+
 // Main program
 initializeMap();
 var coordinates = parseCSV(csv_walking); // One of the following; csv_biking, csv_driving, csv_running, csv_walking
 var geoJSON = createGeoJSONObject(coordinates);
-loadRoute(geoJSON);
+var layer = loadRoute(geoJSON);
 
 // Center the map to the first coordinates on the route
 mymap.setView([coordinates[0][1], coordinates[0][0]], 13); // Tuple (Latitude, Longitude), Zoom-level
