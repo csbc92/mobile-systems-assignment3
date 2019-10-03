@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>Assignment 3 - Leaflet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
     <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -14,5 +15,15 @@
     <div id="mapid"></div>
 </body>
 
-<script src="js/main.js"></script>
+<!--CSV2JSON library-->
+<script type="text/javascript" src="node_modules/csvjson-csv2json/csv2json.js"></script>
+
+<!-- GPS Data-->
+<script type="text/javascript" src="location-data/biking.js "></script>
+<script type="text/javascript" src="location-data/driving.js "></script>
+<script type="text/javascript" src="location-data/running.js "></script>
+<script type="text/javascript" src="location-data/walking.js "></script>
+
+<!-- Main program (LeafletJS interactive map)-->
+<script type="text/javascript" src="js/main.js"></script>
 </html

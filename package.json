@@ -1,0 +1,14 @@
+{
+  "name": "mobile-systems-assignment-3-leaflet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csvjson-csv2json": "^5.0.6"
+  }
+}
