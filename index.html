@@ -13,11 +13,24 @@
 
 <body>
     <div id="mapid"></div>
-    <button type="button" onclick="clearMap()">Clear route</button>
+    <select id="device">
+        <option value="phone" selected>Phone GPS</option>
+        <option value="lea-5h">u-blox LEA-5H GPS receiver</option>
+    </select>
+    <select id="filter">
+            <option value="none" selected>None</option>
+            <option value="mean">Mean filter</option>
+            <option value="median">Median filter</option>
+    </select>
+    <span>Interval: <input type="number" id="interval" min="2" max="100" value="10"></span>
+    <br>
     <button type="button" onclick="drawRoute(csv_biking)">Biking route</button>
     <button type="button" onclick="drawRoute(csv_driving)">Driving route</button>
     <button type="button" onclick="drawRoute(csv_running)">Running route</button>
     <button type="button" onclick="drawRoute(csv_walking)">Walking route</button>
+    <br>
+    <br>
+    <button type="button" onclick="clearMap()">Clear route</button>
 </body>
 
 <!--CSV2JSON library-->
