@@ -1,3 +1,31 @@
 #mapid {
     height: 720px;
 }
+
+#routes {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#routes td,
+#routes th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#routes tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#routes tr:hover {
+    background-color: #ddd;
+}
+
+#routes th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}

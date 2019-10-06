@@ -11,11 +11,10 @@ function initializeMap() {
     }).addTo(mymap);
 }
 
-function loadRoute(geoJSON) {
+function loadRoute(geoJSON, color) {
 
-    var randomColor = "#000000".replace(/0/g, function() { return (~~(Math.random() * 16)).toString(16); });
     var lineStyle = {
-        "color": randomColor,
+        "color": color,
         "weight": 2,
         "opacity": 0.65
     };
@@ -73,6 +72,7 @@ function clearMap() {
     var lastElement = layers.pop();
     if (lastElement != undefined) {
         mymap.removeLayer(lastElement);
+        removeFirstTableEntry();
     }
 }
 
@@ -107,8 +107,41 @@ function drawRoute(route) {
     }
 
     var geoJSON = createGeoJSONObject(coordinates);
-    layer = loadRoute(geoJSON);
+    var randomColor = "#000000".replace(/0/g, function() { return (~~(Math.random() * 16)).toString(16); });
+    layer = loadRoute(geoJSON, randomColor);
     layers.push(layer);
+
+    addTableEntry({
+        "device": getOptions().device,
+        "filter": getOptions().filter,
+        "interval": interval,
+        "color": randomColor,
+    })
+}
+
+function addTableEntry(record) {
+    var table = document.getElementById("routes");
+
+    // Create an empty <tr> element and add it to the 1st position of the table:
+    var row = table.insertRow(1);
+
+    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+    var device = row.insertCell(0);
+    var filter = row.insertCell(1);
+    var interval = row.insertCell(2);
+    var color = row.insertCell(3);
+
+    // add the data
+    device.innerHTML = record.device;
+    filter.innerHTML = record.filter;
+    interval.innerHTML = record.interval;
+    color.innerHTML = "-";
+    color.style = "background-color: " + record.color;
+}
+
+function removeFirstTableEntry() {
+    var table = document.getElementById("routes")
+    table.deleteRow(1);
 }
 
 /*
@@ -182,6 +215,14 @@ function getOptions() {
         "device": device_value,
         "filter": filter_value
     };
+}
+
+function filterSelectionChanged() {
+    if (getOptions().filter === "none") {
+        document.getElementById("interval").disabled = true;
+    } else {
+        document.getElementById("interval").disabled = false;
+    }
 }
 
 // Main program
